@@ -3,17 +3,296 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Bryan</title>
+  <title>Portfolio Bryan | Projects & Hobbies</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(108, 117, 125, 0.95) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.1);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #ff9800;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .nav-link.active {
+      color: #ff9800 !important;
+    }
+
+    /* Main Content */
+    main {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 60px;
+      margin: 50px auto;
+      animation: slideIn 0.8s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      color: #3a445f;
+      font-weight: 700;
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+      animation: fadeInDown 1s ease;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Card Styles */
+    .card {
+      border: none;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 100%;
+      animation: fadeInUp 0.6s ease backwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+    }
+
+    .card-img-top {
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img-top {
+      transform: scale(1.1);
+    }
+
+    .card-body {
+      padding: 25px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #3a445f;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title i {
+      color: #667eea;
+      font-size: 1.2rem;
+    }
+
+    .card-text {
+      color: #666;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      padding: 10px 25px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    /* Section Divider */
+    .section-divider {
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #ff9800);
+      margin: 60px auto;
+      border-radius: 2px;
+      width: 100px;
+      animation: expand 1s ease;
+    }
+
+    @keyframes expand {
+      from { width: 0; }
+      to { width: 100px; }
+    }
+
+    /* Badge */
+    .project-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 3px 10px rgba(255, 152, 0, 0.4);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #2d3561 0%, #1a1d3a 100%);
+      color: white;
+      padding: 30px 0;
+      margin-top: 50px;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #ff9800);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        padding: 30px 20px;
+      }
+      
+      .card-img-top {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Bryan</a>
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-code"></i> Bryan
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,104 +307,146 @@
     </div>
   </nav>
 
-  <!-- Body -->
-  <main class="container my-5">
-
-    <!-- Project Section -->
-    <h2 class="text-center mb-4">Project Saya</h2>
-    <div class="row">
-
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <img src="/img/Project 1.jpg" class="card-img-top" alt="Project 1">
+  <!-- Main Content -->
+  <main class="container">
+    
+    <!-- Projects Section -->
+    <h2 class="text-center">
+      <i class="fas fa-laptop-code"></i> Project Saya
+    </h2>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card">
+          <div style="position: relative;">
+            <span class="project-badge">Web</span>
+            <img src="img/Project 1.jpg" class="card-img-top" alt="Website Portfolio">
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Website Portfolio</h5>
-            <p class="card-text">Membuat website portfolio pribadi menggunakan HTML, CSS, dan Bootstrap.</p>
-            <a href="http://127.0.0.1:3000/portfolio.html" class="btn btn-primary">Lihat Proyek</a>
+            <h5 class="card-title">
+              <i class="fas fa-globe"></i> Website Portfolio
+            </h5>
+            <p class="card-text">Membuat website portfolio pribadi menggunakan HTML, CSS, dan Bootstrap dengan desain modern dan responsif.</p>
+            <a href="portfolio.html" class="btn btn-primary w-100">
+              <i class="fas fa-eye me-2"></i>Lihat Proyek
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <img src="img/Project 2.jpg" class="card-img-top" alt="Project To-Do List">
+      <div class="col-md-4">
+        <div class="card">
+          <div style="position: relative;">
+            <span class="project-badge">App</span>
+            <img src="img/Project 2.jpg" class="card-img-top" alt="To-Do List">
+          </div>
           <div class="card-body">
-            <h5 class="card-title">To-Do List (JadwalKita)</h5>
-            <p class="card-text">Membangun aplikasi To-Do List untuk mengatur jadwal kegiatan harian, dengan fitur tambah, hapus, dan menandai tugas sebagai selesai.</p>
-            <a href="https://github.com/Yogiexc/JadwalKita" class="btn btn-primary">Lihat Proyek</a>
+            <h5 class="card-title">
+              <i class="fas fa-tasks"></i> To-Do List (JadwalKita)
+            </h5>
+            <p class="card-text">Membangun aplikasi To-Do List untuk mengatur jadwal kegiatan harian, dengan fitur tambah, hapus, dan menandai tugas.</p>
+            <a href="https://github.com/Yogiexc/JadwalKita" target="_blank" class="btn btn-primary w-100">
+              <i class="fab fa-github me-2"></i>Lihat di GitHub
+            </a>
           </div>
         </div>
       </div>
-      
 
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <img src="img/Project 3.jpg" class="card-img-top" alt="Project Greenfoot Game">
+      <div class="col-md-4">
+        <div class="card">
+          <div style="position: relative;">
+            <span class="project-badge">Game</span>
+            <img src="img/Project 3.jpg" class="card-img-top" alt="Greenfoot Game">
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Greenfoot Game</h5>
-            <p class="card-text">Membangun game interaktif menggunakan Greenfoot, dengan konsep gameplay yang menarik dan mekanika permainan yang mendidik.</p>
-            <a href="https://github.com/Yogiexc/GreenfootGame" class="btn btn-primary">Lihat Proyek</a>
+            <h5 class="card-title">
+              <i class="fas fa-gamepad"></i> Greenfoot Game
+            </h5>
+            <p class="card-text">Membangun game interaktif menggunakan Greenfoot, dengan konsep gameplay yang menarik dan mekanika permainan edukatif.</p>
+            <a href="https://github.com/Yogiexc/GreenfootGame" target="_blank" class="btn btn-primary w-100">
+              <i class="fab fa-github me-2"></i>Lihat di GitHub
+            </a>
           </div>
         </div>
       </div>
-      
-
     </div>
 
-    <!-- Hobby Section -->
-    <h2 class="text-center mb-4 mt-5">Hobi Saya</h2>
-    <div class="row">
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
 
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <img src="img/Hobi 2.jpg" class="card-img-top" alt="Hobi 2">
+    <!-- Hobbies Section -->
+    <h2 class="text-center">
+      <i class="fas fa-heart"></i> Hobi Saya
+    </h2>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="img/Hobi 2.jpg" class="card-img-top" alt="Berkebun">
           <div class="card-body">
-            <h5 class="card-title">Berkebun & Aquascape</h5>
-            <p class="card-text">Merancang dan merawat tanaman hias serta aquascape untuk memperindah ruangan dan mengasah kreativitas.</p>
+            <h5 class="card-title">
+              <i class="fas fa-leaf"></i> Berkebun & Aquascape
+            </h5>
+            <p class="card-text">Merancang dan merawat tanaman hias serta aquascape untuk memperindah ruangan dan mengasah kreativitas dalam desain natural.</p>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <img src="img/Hobi 1.jpg" class="card-img-top" alt="Hobi 1">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="img/Hobi 1.jpg" class="card-img-top" alt="Beternak">
           <div class="card-body">
-            <h5 class="card-title">Beternak Ikan dan Lobster</h5>
-            <p class="card-text">Mengembangkan budidaya ikan dan lobster air tawar sebagai hobi sekaligus potensi bisnis kecil.</p>
-          </div>
-        </div>
-      </div> 
-
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <img src="img/Hobi 3.jpg" class="card-img-top" alt="Hobi 3">
-          <div class="card-body">
-            <h5 class="card-title">Lomba Burung Berkicau</h5>
-            <p class="card-text">Mengikuti kompetisi burung berkicau, melatih konsistensi perawatan, dan melatih fokus serta kesabaran.</p>
+            <h5 class="card-title">
+              <i class="fas fa-fish"></i> Beternak Ikan dan Lobster
+            </h5>
+            <p class="card-text">Mengembangkan budidaya ikan dan lobster air tawar sebagai hobi sekaligus potensi bisnis kecil yang berkelanjutan.</p>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-lg border-0 rounded">
-          <img src="img/Hobi 4.jpg" class="card-img-top" alt="Fotografi Alam">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="img/Hobi 3.jpg" class="card-img-top" alt="Lomba Burung">
           <div class="card-body">
-            <h5 class="card-title">Fotografi Alam</h5>
+            <h5 class="card-title">
+              <i class="fas fa-dove"></i> Lomba Burung Berkicau
+            </h5>
+            <p class="card-text">Mengikuti kompetisi burung berkicau, melatih konsistensi perawatan, dan melatih fokus serta kesabaran dalam kompetisi.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img src="img/Hobi 4.jpg" class="card-img-top" alt="Fotografi">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fas fa-camera"></i> Fotografi Alam
+            </h5>
             <p class="card-text">Menyalurkan minat pada fotografi dengan mengabadikan keindahan alam dan momen keseharian di lingkungan sekitar.</p>
           </div>
         </div>
       </div>
-      
     </div>
 
   </main>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Bryan Yogie Saputra</p>
+  <footer class="text-white text-center">
+    <p class="mb-0">
+      <i class="fas fa-heart text-danger"></i> 
+      &copy; 2025 Bryan Yogie Saputra. Made with passion.
+    </p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Add hover effect sound (optional - visual feedback only)
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      });
+    });
+  </script>
 </body>
-
 </html>
